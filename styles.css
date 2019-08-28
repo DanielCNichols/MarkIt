@@ -16,6 +16,12 @@ a:link {
   color: black;
 }
 
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+
 header {
   text-align: center;
   margin: 10px;
