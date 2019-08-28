@@ -7,13 +7,13 @@
 }
 
 
-
 .checked {
   color: gold;
 }
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 header {
