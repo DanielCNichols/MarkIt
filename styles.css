@@ -6,16 +6,14 @@
   font-family: 'Arimo', sans-serif;
 }
 
-.button:hover {
-  background-color:black;
-}
+
 
 .checked {
   color: gold;
 }
 
-a:visited {
-color: inherit;
+a {
+  text-decoration: none;
 }
 
 header {
