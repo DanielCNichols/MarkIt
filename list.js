@@ -18,13 +18,13 @@ const list = (function() {
     return `<form id="add-form">
     <fieldset>
     <div><label for="title "><span>Title</span></label></div>
-    <div><input name="title" id="title" type="text" required></div>
+    <div><input name="title" id="title" type="text" placeholder="Reddit" required></div>
 
       <div><label for="url"><span>URL</span></label></div>
-      <div><input name="url" id="url" type="url" required></div>
+      <div><input name="url" id="url" type="url" placeholder="https://www.reddit.com"required></div>
 
       <div><label for="desc"><span>Description</span></label></div>
-      <div><textarea name="desc"type="textarea"required></textarea></div>
+      <div><textarea name="desc"type="textarea" placeholder="A short description of the website" required></textarea></div>
 
       <div><label for="rating"><span>Rating</span></label></div>
       <div><select name="rating"id="rating" required></div>

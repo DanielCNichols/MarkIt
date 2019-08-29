@@ -102,6 +102,7 @@ div >input {
   margin-top: 10px;
   margin-bottom: 10px;
   border: 2px solid gray;
+  padding: 5px;
 }
 
 div > textarea {
@@ -109,6 +110,7 @@ div > textarea {
   margin-top: 10px;
   margin-bottom: 10px;
   border: 2px solid gray;
+  padding: 5px;
 }
 
 div > select {
@@ -116,6 +118,7 @@ div > select {
   margin-top: 10px;
   margin-bottom: 10px;
   border: 2px solid gray;
+  padding: 5px;
 }
 
 
@@ -150,6 +153,7 @@ LIST CSS RULES
 .bookmark-info  {
   margin: 10px 10px;
   word-wrap: break-word;
+  padding: 5px;
 }
 
 .bookmark-info p:nth-child(1) {
