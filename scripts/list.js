@@ -17,17 +17,17 @@ const list = (function() {
   function generateForm() {
     return `<form id="add-form">
     <fieldset>
-    <div><label for="title "><span>Title</span></label></div>
+    <div><label for="title"><span>Title</span></label></div>
     <div><input name="title" id="title" type="text" placeholder="Reddit" required></div>
 
       <div><label for="url"><span>URL</span></label></div>
       <div><input name="url" id="url" type="url" placeholder="https://www.reddit.com"required></div>
 
       <div><label for="desc"><span>Description</span></label></div>
-      <div><textarea name="desc"type="textarea" placeholder="A short description of the website" required></textarea></div>
+      <div><textarea name="desc"type="textarea" placeholder="A short description of the website"></textarea></div>
 
       <div><label for="rating"><span>Rating</span></label></div>
-      <div><select name="rating"id="rating" required></div>
+      <div><select name="rating"id="rating"></div>
       <option value=''>Select Rating</option>
       <option value="1">&#x2605;</option> 
       <option value="2">&#x2605;&#x2605;</option>
@@ -41,15 +41,17 @@ const list = (function() {
   </form>`;
   }
 
+  //Maybe we can have addForm call for an update to store.adding and then cancel calls for an update to store.adding and they both render. 
   function handleCancelAdd() {
     $('#cancel').on('click', function() {
-      $('.add-item').empty();
-      $('#main-add').show();
+      store.addState();
+      render();
     });
   }
 
   function addForm() {
-    $('#main-add').click(function(event){
+    $('#main-add').click(function(){
+      store.addState();
       let form = generateForm();
       $('.add-item').html(form);
       handleCancelAdd();
@@ -158,6 +160,12 @@ const list = (function() {
   function render() {
     let bookmarksStore = [...store.bookmarks];
 
+    if (store.adding === true) {
+      const bookmarksString = generateForm();
+      $('.add-item').html(bookmarksString);
+
+    }
+
     if (store.filtered === true) {
       bookmarksStore = bookmarksStore.filter(bookmark => bookmark.rating >= store.filterVal);
     }
@@ -176,6 +184,7 @@ const list = (function() {
   function handleBookmarkSubmit() {
     $('#add-form').submit(function(event) {
       event.preventDefault();
+      store.addState();
       let form = document.querySelector('#add-form');
       let item = serializeJson(form);
       $('#add-form').trigger('reset');
@@ -196,7 +205,7 @@ const list = (function() {
           render();
         })
         .catch((err) => {
-          store/setError(err.message);
+          store.setError(err.message);
           renderError();
         });
     });
