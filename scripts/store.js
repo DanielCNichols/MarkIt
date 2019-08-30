@@ -20,6 +20,10 @@ const store = (function() {
     return this.bookmarks.find(bookmark => bookmark.id === id);
   };
 
+  const addState =function() {
+    store.adding = !store.adding;
+  };
+
   const filterBookmarks = function() {
     store.filtered = true;
   };
@@ -47,7 +51,8 @@ const store = (function() {
     deleteBookmark,
     findBookmark,
     filterBookmarks,
-    filterAdd
+    filterAdd,
+    addState
   };
 
 
