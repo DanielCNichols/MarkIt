@@ -6,9 +6,6 @@
   font-family: 'Arimo', sans-serif;
 }
 
-button:hover {
-  background-color: black;
-}
 
 .checked {
   color: gold;
@@ -415,13 +412,6 @@ FORM DISPLAY
     background-color: white;
   }
   
-  button:hover {
-    background-color: black;
-  }
-  
-
-
-
 }
   
 
