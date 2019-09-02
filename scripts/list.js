@@ -217,6 +217,7 @@ const list = (function() {
 
   function handleBookmarkDelete() {
     $('.list-display').on('click', '.delete', function(event) {
+      store.resetAdd();
       const id = getId(event.currentTarget);
       api.deleteBookmark(id)
         .then(()=> {
