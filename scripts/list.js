@@ -36,16 +36,16 @@ const list = (function() {
       <option value="5">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</option>
     </select></div>
     </fieldset>
-    <input class="button" type="submit">Submit</input>
-    <input type="button" id="cancel">Cancel</input>
+    <button class="button" type="submit">Submit</button>
+    <button class="button" id="cancel">Cancel</button>
   </form>`;
   }
 
   //Maybe we can have addForm call for an update to store.adding and then cancel calls for an update to store.adding and they both render. 
   function handleCancelAdd() {
-    $('#cancel').on('click', function() {
+    $('body').on('click', '#cancel', function() {
       console.log(`this is store.adding before updating ${store.adding}`);
-      store.addState();
+      store.resetAdd();
       console.log(`this is store.adding after updating ${store.adding}`);
       render();
     });
@@ -165,14 +165,15 @@ const list = (function() {
     if (store.adding === true) {
       const bookmarksString = generateForm();
       $('.add-item').html(bookmarksString);
-    } 
-
+    } else {
+      $('.add-item').empty();
+    }
 
     if (store.filtered === true) {
       bookmarksStore = bookmarksStore.filter(bookmark => bookmark.rating >= store.filterVal);
     }
     const bookmarksString = generateItemString(bookmarksStore);
-    $('.add-item').empty();
+    // $('.add-item').empty();
     $('.list-display').html(bookmarksString);
   }
 
@@ -186,7 +187,7 @@ const list = (function() {
   function handleBookmarkSubmit() {
     $('#add-form').submit(function(event) {
       event.preventDefault();
-      store.addState();
+      store.resetAdd();
       let form = document.querySelector('#add-form');
       let item = serializeJson(form);
       $('#add-form').trigger('reset');
