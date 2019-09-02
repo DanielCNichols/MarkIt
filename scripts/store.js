@@ -21,12 +21,14 @@ const store = (function() {
   };
 
   const addState =function() {
+    console.log('updating adding');
     store.adding = !store.adding;
   };
 
   const filterBookmarks = function() {
     store.filtered = true;
   };
+
   const filterAdd = function(filterVal) {
     store.filterVal = filterVal;
   };
