@@ -20,10 +20,14 @@ const store = (function() {
     return this.bookmarks.find(bookmark => bookmark.id === id);
   };
 
-  const addState =function() {
+  const addState = function() {
     console.log('updating adding');
-    store.adding = !store.adding;
+    store.adding = true;
   };
+
+  const resetAdd = function () {
+    store.adding = false;
+  }
 
   const filterBookmarks = function() {
     store.filtered = true;
@@ -54,7 +58,8 @@ const store = (function() {
     findBookmark,
     filterBookmarks,
     filterAdd,
-    addState
+    addState,
+    resetAdd
   };
 
 
