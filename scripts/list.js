@@ -58,7 +58,6 @@ const list = (function() {
       $('.add-item').html(form);
       handleCancelAdd();
       handleBookmarkSubmit();
-      $('#main-add').hide();
     });
   }
   
@@ -166,15 +165,14 @@ const list = (function() {
     if (store.adding === true) {
       const bookmarksString = generateForm();
       $('.add-item').html(bookmarksString);
-    } else {
-      // $('.add-item').empty();
-    }
+    } 
 
 
     if (store.filtered === true) {
       bookmarksStore = bookmarksStore.filter(bookmark => bookmark.rating >= store.filterVal);
     }
     const bookmarksString = generateItemString(bookmarksStore);
+    $('.add-item').empty();
     $('.list-display').html(bookmarksString);
   }
 
