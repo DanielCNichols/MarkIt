@@ -36,15 +36,17 @@ const list = (function() {
       <option value="5">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</option>
     </select></div>
     </fieldset>
-    <button class="button" type="submit">Submit</button>
-    <button id="cancel">Cancel</button>
+    <input class="button" type="submit">Submit</input>
+    <input type="button" id="cancel">Cancel</input>
   </form>`;
   }
 
   //Maybe we can have addForm call for an update to store.adding and then cancel calls for an update to store.adding and they both render. 
   function handleCancelAdd() {
     $('#cancel').on('click', function() {
+      console.log(`this is store.adding before updating ${store.adding}`);
       store.addState();
+      console.log(`this is store.adding after updating ${store.adding}`);
       render();
     });
   }
@@ -160,16 +162,18 @@ const list = (function() {
   function render() {
     let bookmarksStore = [...store.bookmarks];
 
+    console.log(`this is store adding ${store.adding}`);
     if (store.adding === true) {
       const bookmarksString = generateForm();
       $('.add-item').html(bookmarksString);
-
+    } else {
+      // $('.add-item').empty();
     }
+
 
     if (store.filtered === true) {
       bookmarksStore = bookmarksStore.filter(bookmark => bookmark.rating >= store.filterVal);
     }
-
     const bookmarksString = generateItemString(bookmarksStore);
     $('.list-display').html(bookmarksString);
   }
