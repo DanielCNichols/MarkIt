@@ -185,7 +185,7 @@ const list = (function() {
   }
 
   function handleBookmarkSubmit() {
-    $('#add-form').submit(function(event) {
+    $('body').on('submit', '#add-form', function(event) {
       event.preventDefault();
       store.resetAdd();
       let form = document.querySelector('#add-form');
@@ -217,7 +217,7 @@ const list = (function() {
 
   function handleBookmarkDelete() {
     $('.list-display').on('click', '.delete', function(event) {
-      store.resetAdd();
+      // store.resetAdd();
       const id = getId(event.currentTarget);
       api.deleteBookmark(id)
         .then(()=> {
