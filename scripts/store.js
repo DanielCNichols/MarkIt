@@ -21,7 +21,6 @@ const store = (function() {
   };
 
   const addState = function() {
-    console.log('updating adding');
     store.adding = true;
   };
 

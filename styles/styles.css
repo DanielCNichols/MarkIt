@@ -36,6 +36,7 @@ select {
   height: 40px;
   margin-top: 5px;
   background-color: white;
+  cursor: pointer;
 }
 
 .main-controls {
@@ -51,6 +52,7 @@ select {
   height: 40px;
   margin-bottom: 20px;
   background-color: White;
+  cursor: pointer;
 }
 
 
@@ -67,7 +69,7 @@ FORM CSS RULES
 #add-form {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 80%;
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
@@ -81,6 +83,7 @@ FORM CSS RULES
   border: 2px solid gray;
   width: 60%;
   height: 30px;
+  cursor: pointer;
 }
 
 
@@ -88,16 +91,12 @@ fieldset {
   width: 100%;
   border: none;
   padding: 0;
-  margin: 0 auto;;
-}
-
-fieldset > div {
-  width: auto;
-  text-align: center;
   margin: 0 auto;
+  text-align: center
 }
 
-div >input {
+
+div > input {
   width: 100%;
   height: 30px;
   margin: 10px auto;
@@ -148,6 +147,7 @@ LIST CSS RULES
 .title-element {
   margin: 10px auto 10px auto;
   text-align: center;
+  cursor: pointer;
 }
 
 .bookmark-info  {
@@ -157,14 +157,23 @@ LIST CSS RULES
 }
 
 .bookmark-info p:nth-child(1) {
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   border: 2px solid #e7e7e7;
-  padding: 10px
+  padding: 10px;
 }
 
-.visit {
-  margin-top: 15px;
-  text-align: center;
+
+.visit a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  width: 40%;
+  height: 30px;
+  border: 2px solid gray;
+  border-radius:3px;
+  background-color: white;
+  cursor: pointer;
 }
 
 .bookmark-controls {
@@ -182,6 +191,7 @@ LIST CSS RULES
   border: 2px solid gray;
   border-radius:3px;
   background-color: white;
+  cursor: pointer;
 }
 
 .list-display {
@@ -198,62 +208,19 @@ LIST CSS RULES
     margin-left: auto;
     margin-right: auto;
   }
+ 
+  #add-form {
+    width: 80%;
+    margin-top: 10px;
+  }
 
+  #add-form > button {
+    margin: 3px auto 10px auto;
+    height: 40px;
+  }
 
-  
-#add-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-
-#add-form > button {
-  margin: 3px auto 10px auto;
-  background-color: white;
-  border: 2px solid gray;
-  width: 60%;
-  height: 40px;
-}
-
-
-fieldset {
-  width: 100%;
-  border: none;
-}
-
-fieldset > div {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  text-align: center
-}
-
-div >input {
-  width: 100%;
-  height: 30px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px solid gray;
-}
-
-div > textarea {
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px solid gray;
-  height: 50px;
-}
-
-div > select {
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px solid gray;
+  div > textarea {
+    height: 50px;
   }
 
 }
@@ -267,121 +234,53 @@ div > select {
   }
 
   select {
-  width: 100%;
-  height: 40px;
-  margin-top: 5px;
-  background-color: white;
   align-self: flex-start;
   }
 
   .main-controls {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
     flex-direction: row;
-    align-items: space-around;
   }
 
   .main-controls > button {
-    height: 40px;
     width: 25%;
     margin-left: auto;
-
-    margin-bottom: 20px;
-    background-color: White;
     align-self: flex-end;
-} 
-
-
-  .main-controls label {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
+  } 
 /* 
 =======================================
 FORM DISPLAY
 ======================================= */
 
   #add-form {
-    display: flex;
-    flex-direction: column;
     width: 80%;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
   }
   
-  
-  
   #add-form > button {
-    background-color: white;
-    border: 2px solid gray;
     width: 30%;
     height: 40px;
     flex-direction: row;
     align-self: flex-start;
   }
   
-  
-  fieldset {
-    width: 100%;
-    border: none;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  fieldset > div {
-    text-align: center
-  }
-  
   div >input {
-    width: 100%;
     height: 40px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 2px solid gray;
   }
   
   div > textarea {
-    width: 100%;
-    margin-top: 10px;
     height: 60px;
-    margin-bottom: 10px;
-    border: 2px solid gray;
   }
-  
-  div > select {
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 2px solid gray;
-  }
-  
   
   /* ===============================
   LIST CSS RULES
   =============================== */
   
   .star-rating {
-    width: 100%;
-    padding: 5px;
-    text-align: center;
-    margin:  auto  auto;
-    background-color: lightblue;
-    border-bottom: 1px solid #e7e7e7;
     font-size: 1.2em;
   }
   
- 
-  
   .title-element {
-    margin: 10px auto 10px auto;
-    text-align: center;
     font-size: 1.5em;
-    width: 80%;
-  }
+  } 
   
   .bookmark-info  {
     width: 80%;
@@ -389,29 +288,21 @@ FORM DISPLAY
     word-wrap: break-word;
   }
   
- 
-  .visit {
+  .visit > a {
     margin-top: 15px;
-    text-align: center;
     font-size: 1.2em;
+    height: 40px;
   }
   
   .bookmark-controls {
     margin: 30px auto 30px auto;
-    text-align: center;
-    display: flex;
   }
   
   .bookmark-controls > button  {
     width: 30%;
     height: 40px;
-    margin-left: auto; 
-    margin-right: auto;
-    border: 2px solid gray;
-    border-radius:3px;
-    background-color: white;
   }
-  
+
 }
   
 

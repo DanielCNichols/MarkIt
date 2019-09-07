@@ -41,12 +41,9 @@ const list = (function() {
   </form>`;
   }
 
-  //Maybe we can have addForm call for an update to store.adding and then cancel calls for an update to store.adding and they both render. 
   function handleCancelAdd() {
     $('body').on('click', '#cancel', function() {
-      console.log(`this is store.adding before updating ${store.adding}`);
       store.resetAdd();
-      console.log(`this is store.adding after updating ${store.adding}`);
       render();
     });
   }
@@ -135,14 +132,16 @@ const list = (function() {
     if (bookmark.expanded === true) {
       return `<li class="bookmark-element" data-item-id="${bookmark.id}"> 
       <div class="star-rating">Your rating: ${starRating}</div>
-      <div class="title-element"><p><a href="${bookmark.url}">${bookmark.title}</p></a></div>
+      <div class="title-element"><p><a target="_blank" href="${bookmark.url}">${bookmark.title}</p></a></div>
       <div class = "bookmark-info ${expanded}">
           <p>${bookmark.desc}</p>
-          <p class="visit"><a href="${bookmark.url}">Click here to visit ${bookmark.title}</a></p>
+          <div class="visit">
+            <a target="_blank" href="${bookmark.url}">Visit Site</a>
+          </div>
         </div>
       <div  class="bookmark-controls">
           <button class="item-controls expand">Less</button>
-          <button class="item-controls delete">delete</button>
+          <button class="item-controls delete">Delete</button>
       </div>
     </li>`;
     }
@@ -150,7 +149,7 @@ const list = (function() {
     else { 
       return `<li class="bookmark-element" data-item-id="${bookmark.id}"> 
       <div class="star-rating">Your rating: ${starRating}</div>
-      <div class="title-element"><p><a href="${bookmark.url}">${bookmark.title}</p></a></div>
+      <div class="title-element"><p><a target="_blank" href="${bookmark.url}">${bookmark.title}</p></a></div>
       <div  class="bookmark-controls">
           <button class="expand">More</button>
       </div>
@@ -161,7 +160,6 @@ const list = (function() {
   function render() {
     let bookmarksStore = [...store.bookmarks];
 
-    console.log(`this is store adding ${store.adding}`);
     if (store.adding === true) {
       const bookmarksString = generateForm();
       $('.add-item').html(bookmarksString);
@@ -173,7 +171,6 @@ const list = (function() {
       bookmarksStore = bookmarksStore.filter(bookmark => bookmark.rating >= store.filterVal);
     }
     const bookmarksString = generateItemString(bookmarksStore);
-    // $('.add-item').empty();
     $('.list-display').html(bookmarksString);
   }
 
