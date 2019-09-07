@@ -189,7 +189,6 @@ const list = (function() {
       let item = serializeJson(form);
       $('#add-form').trigger('reset');
       let newItem = bookmark.create(item);
-      $('.add-item').empty();
       api.createBookmark(newItem)
         .then(res => {
           if (res.ok) {
@@ -214,7 +213,6 @@ const list = (function() {
 
   function handleBookmarkDelete() {
     $('.list-display').on('click', '.delete', function(event) {
-      // store.resetAdd();
       const id = getId(event.currentTarget);
       api.deleteBookmark(id)
         .then(()=> {
