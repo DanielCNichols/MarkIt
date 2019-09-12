@@ -26,11 +26,8 @@ const store = (function() {
 
   const resetAdd = function () {
     store.adding = false;
-  }
-
-  const filterBookmarks = function() {
-    store.filtered = true;
   };
+
 
   const filterAdd = function(filterVal) {
     store.filterVal = filterVal;
@@ -46,7 +43,6 @@ const store = (function() {
     bookmarks: [],
     adding: false, 
     editing: false, 
-    filtered: false, 
     showError: false, 
     filterVal: null,
     setError,
@@ -55,7 +51,6 @@ const store = (function() {
     addBookmark,
     deleteBookmark,
     findBookmark,
-    filterBookmarks,
     filterAdd,
     addState,
     resetAdd

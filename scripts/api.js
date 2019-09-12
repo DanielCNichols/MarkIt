@@ -9,20 +9,29 @@ const api = (function() {
   };
 
   const createBookmark = function(newItem) {
-    const newBookmark = JSON.stringify({
-      title: newItem.title,
-      url: newItem.url,
-      desc: newItem.desc,
-      rating: newItem.rating,
-    });
+    console.log('api createBookmark ran');
+    let bookmarkString = {};
 
+    bookmarkString.title = newItem.title;
+
+    bookmarkString.url = newItem.url;
+
+    if (newItem.desc) {
+      bookmarkString.desc = newItem.desc;
+    }
+    if (newItem.rating) {
+      bookmarkString.rating = newItem.rating;
+    }
+    const newBookmark = JSON.stringify(bookmarkString);
+    console.log(newBookmark);
     return fetch(`${BASE_URL}/bookmarks`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: newBookmark
-    });
+    }).then(res=>res)
+      .catch(err => console.log(err));
   };
 
   const editBookmark = function(id, updateInfo) {
@@ -39,7 +48,7 @@ const api = (function() {
     let url = `${BASE_URL}/bookmarks/${id}`;
  
 
-    return fetch(`${BASE_URL}/bookmarks/${id}`, {
+    return fetch(url, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

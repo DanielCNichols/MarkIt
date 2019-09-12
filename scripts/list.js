@@ -54,7 +54,6 @@ const list = (function() {
       let form = generateForm();
       $('.add-item').html(form);
       handleCancelAdd();
-      handleBookmarkSubmit();
     });
   }
   
@@ -167,7 +166,7 @@ const list = (function() {
       $('.add-item').empty();
     }
 
-    if (store.filtered === true) {
+    if (store.filterVal !== undefined) {
       bookmarksStore = bookmarksStore.filter(bookmark => bookmark.rating >= store.filterVal);
     }
     const bookmarksString = generateItemString(bookmarksStore);
@@ -183,6 +182,7 @@ const list = (function() {
 
   function handleBookmarkSubmit() {
     $('body').on('submit', '#add-form', function(event) {
+      console.log('handleSubmitRan');
       event.preventDefault();
       store.resetAdd();
       let form = document.querySelector('#add-form');
@@ -205,6 +205,7 @@ const list = (function() {
         })
         .catch((err) => {
           store.setError(err.message);
+          console.log(err.message);
           renderError();
         });
     });
@@ -231,7 +232,6 @@ const list = (function() {
   function handleFilter() {
     $('#main-filter').on('mouseup', function() {
       let filterVal = $('#main-filter').val();
-      store.filterBookmarks();
       store.filterAdd(filterVal);
       render();
     });
@@ -257,6 +257,7 @@ const list = (function() {
     handleBookmarkDelete();
     addForm();
     handleFilter();
+    handleBookmarkSubmit();
    
   }
 
