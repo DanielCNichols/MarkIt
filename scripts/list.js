@@ -187,7 +187,6 @@ const list = (function() {
       store.resetAdd();
       let form = document.querySelector('#add-form');
       let item = serializeJson(form);
-      $('#add-form').trigger('reset');
       let newItem = bookmark.create(item);
       api.createBookmark(newItem)
         .then(res => {
@@ -200,7 +199,6 @@ const list = (function() {
           let storeJson = resJson;
           storeJson.expanded = false;
           store.addBookmark(storeJson);
-          $('#main-add').show();
           render();
         })
         .catch((err) => {
