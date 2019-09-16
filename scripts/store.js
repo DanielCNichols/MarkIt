@@ -45,9 +45,9 @@ const store = (function() {
     editing: false, 
     showError: false, 
     filterVal: null,
-    setError,
     error: null,
 
+    setError,
     addBookmark,
     deleteBookmark,
     findBookmark,
