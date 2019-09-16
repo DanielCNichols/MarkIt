@@ -182,7 +182,6 @@ const list = (function() {
 
   function handleBookmarkSubmit() {
     $('body').on('submit', '#add-form', function(event) {
-      console.log('handleSubmitRan');
       event.preventDefault();
       store.resetAdd();
       let form = document.querySelector('#add-form');
@@ -203,7 +202,6 @@ const list = (function() {
         })
         .catch((err) => {
           store.setError(err.message);
-          console.log(err.message);
           renderError();
         });
     });

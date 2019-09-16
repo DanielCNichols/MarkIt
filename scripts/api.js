@@ -9,7 +9,6 @@ const api = (function() {
   };
 
   const createBookmark = function(newItem) {
-    console.log('api createBookmark ran');
     let bookmarkString = {};
 
     bookmarkString.title = newItem.title;
@@ -23,7 +22,6 @@ const api = (function() {
       bookmarkString.rating = newItem.rating;
     }
     const newBookmark = JSON.stringify(bookmarkString);
-    console.log(newBookmark);
     return fetch(`${BASE_URL}/bookmarks`, {
       method: 'POST',
       headers: {
