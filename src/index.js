@@ -1,3 +1,8 @@
+import $ from 'jquery';
+import list from './list';
+import api from './api';
+import store from './store';
+
 function main() {
   list.eventListeners();
   list.render();

@@ -1,56 +1,60 @@
 'use strict';
-
-const list = (function() {
-  function generateItemString(bookmarklist) {
-    let entries = bookmarklist.map(item => generateItemHTML(item));
+import $ from 'jquery';
+import store from './store';
+import components from './components';
+import bookmark from './bookmark';
+import api from './api';
+const list = {
+  generateItemString(bookmarklist) {
+    let entries = bookmarklist.map(item => list.generateItemHTML(item));
     return entries.join('');
-  }
+  },
 
-  function getId(bookmark) {
+  getId(bookmark) {
     return $(bookmark)
       .closest('.bookmark-element')
       .data('item-id');
-  }
+  },
 
-  function generateForm() {
+  generateForm() {
     return components.addForm();
-  }
+  },
 
-  function handleCancelAdd() {
+  handleCancelAdd() {
     $('body').on('click', '#cancel', function() {
       store.resetAdd();
-      render();
+      list.render();
     });
-  }
+  },
 
-  function addForm() {
+  addForm() {
     $('#main-add').click(function() {
       store.addState();
-      let form = generateForm();
+      let form = list.generateForm();
       $('.add-item').html(form);
-      handleCancelAdd();
+      list.handleCancelAdd();
     });
-  }
+  },
 
-  function generateError(message) {
+  generateError(message) {
     return `
       <section class="error">
         <button id="cancel-error">X</button>
         <p>${message}</p>
       </section>
     `;
-  }
+  },
 
-  function renderError() {
+  renderError() {
     if (store.error) {
-      const el = generateError(store.error);
+      const el = list.generateError(store.error);
       $('.error').html(el);
     } else {
       $('.error').empty();
     }
-  }
+  },
 
-  function renderStars(rating) {
+  renderStars(rating) {
     let i = 0;
     let stars = '';
     while (i < rating) {
@@ -58,24 +62,24 @@ const list = (function() {
       i++;
     }
     return stars;
-  }
+  },
 
-  function generateItemHTML(bookmark) {
+  generateItemHTML(bookmark) {
     let starRating =
-      bookmark.rating >= 1 ? renderStars(bookmark.rating) : 'Not Rated';
+      bookmark.rating >= 1 ? list.renderStars(bookmark.rating) : 'Not Rated';
 
     if (bookmark.expanded === true) {
       return components.bookmarkExpanded(bookmark, starRating);
     } else {
       return components.bookmarkCollapsed(bookmark, starRating);
     }
-  }
+  },
 
-  function render() {
+  render() {
     let bookmarksStore = [...store.bookmarks];
 
     if (store.adding === true) {
-      const bookmarksString = generateForm();
+      const bookmarksString = list.generateForm();
       $('.add-item').html(bookmarksString);
     } else {
       $('.add-item').empty();
@@ -86,79 +90,78 @@ const list = (function() {
         bookmark => bookmark.rating >= store.filterVal
       );
     }
-    const bookmarksString = generateItemString(bookmarksStore);
+    const bookmarksString = list.generateItemString(bookmarksStore);
     $('.list-display').html(bookmarksString);
-  }
+  },
 
-  function serializeJson(form) {
-    const formData = new FormData(form);
-    const o = {};
-    formData.forEach((val, name) => (o[name] = val));
-    return o;
-  }
+  serializeJson(form) {
+    const data = new FormData(form);
+    const formObject = {};
+    data.forEach((val, name) => (formObject[name] = val));
+    return formObject;
+  },
 
-  function handleBookmarkSubmit() {
+  handleBookmarkSubmit() {
     $('body').on('submit', '#add-form', async function(event) {
       event.preventDefault();
       store.resetAdd();
       let form = document.querySelector('#add-form');
-      let item = serializeJson(form);
+      let item = list.serializeJson(form);
       let newItem = bookmark.create(item);
       try {
         let newBookmark = await api.createBookmark(newItem);
         store.addBookmark(newBookmark);
-        render();
+        list.render();
       } catch (error) {
         store.setError(error.message);
-        renderError();
+        list.renderError();
       }
     });
-  }
+  },
 
-  function handleBookmarkDelete() {
+  handleBookmarkDelete() {
     $('.list-display').on('click', '.delete', async function(event) {
-      const id = getId(event.currentTarget);
+      const id = list.getId(event.currentTarget);
       try {
         await api.deleteBookmark(id).then(() => store.deleteBookmark(id));
-        render();
+        list.render();
       } catch (error) {
         store.setError(error.message);
-        renderError();
+        list.renderError();
       }
     });
-  }
+  },
 
-  function handleFilter() {
+  handleFilter() {
     $('#main-filter').on('mouseup', function() {
       let filterVal = $('#main-filter').val();
       store.filterAdd(filterVal);
-      render();
+      list.render();
     });
-  }
+  },
 
-  function toggleExpanded(bookmark) {
+  toggleExpanded(bookmark) {
     bookmark.expanded = !bookmark.expanded;
-  }
+  },
 
-  function handleBookmarkExpand() {
+  handleBookmarkExpand() {
     $('.list-display').on('click', '.expand', function(event) {
-      const id = getId(event.currentTarget);
+      const id = list.getId(event.currentTarget);
+      console.log(event.currentTarget);
+      console.log(id);
       const bookmark = store.findBookmark(id);
-      toggleExpanded(bookmark);
-      render();
+      list.toggleExpanded(bookmark);
+      list.render();
     });
-  }
+  },
 
-  function eventListeners() {
-    handleBookmarkExpand();
-    handleBookmarkDelete();
-    addForm();
-    handleFilter();
-    handleBookmarkSubmit();
-  }
+  eventListeners() {
+    list.handleBookmarkExpand();
+    list.handleBookmarkDelete();
+    list.addForm();
+    list.handleFilter();
+    list.handleBookmarkSubmit();
+  },
+};
 
-  return {
-    eventListeners,
-    render,
-  };
-})();
+export default list;

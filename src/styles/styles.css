@@ -6,7 +6,6 @@
   font-family: 'Arimo', sans-serif;
 }
 
-
 .checked {
   color: gold;
 }
@@ -20,7 +19,6 @@ a:visited {
   text-decoration: none;
   color: black;
 }
-
 
 header {
   text-align: center;
@@ -55,12 +53,10 @@ select {
   cursor: pointer;
 }
 
-
 .main-controls label {
   text-align: center;
   margin-bottom: 20px;
 }
-
 
 /* =================================
 FORM CSS RULES 
@@ -75,8 +71,6 @@ FORM CSS RULES
   margin-right: auto;
 }
 
-
-
 #add-form > button {
   margin: 3px auto 10px auto;
   background-color: white;
@@ -86,15 +80,13 @@ FORM CSS RULES
   cursor: pointer;
 }
 
-
 fieldset {
   width: 100%;
   border: none;
   padding: 0;
   margin: 0 auto;
-  text-align: center
+  text-align: center;
 }
-
 
 div > input {
   width: 100%;
@@ -120,7 +112,6 @@ div > select {
   padding: 5px;
 }
 
-
 /* ===============================
 LIST CSS RULES
 =============================== */
@@ -129,7 +120,7 @@ LIST CSS RULES
   width: 100%;
   padding: 5px;
   text-align: center;
-  margin:  auto  auto;
+  margin: auto auto;
   background-color: lightblue;
   border-bottom: 1px solid #e7e7e7;
   /* min-height: 15px; */
@@ -143,14 +134,13 @@ LIST CSS RULES
   word-wrap: break-word;
 }
 
-
 .title-element {
   margin: 10px auto 10px auto;
   text-align: center;
   cursor: pointer;
 }
 
-.bookmark-info  {
+.bookmark-info {
   margin: 10px 10px;
   word-wrap: break-word;
   padding: 5px;
@@ -162,7 +152,6 @@ LIST CSS RULES
   padding: 10px;
 }
 
-
 .visit a {
   display: flex;
   justify-content: center;
@@ -171,7 +160,7 @@ LIST CSS RULES
   width: 40%;
   height: 30px;
   border: 2px solid gray;
-  border-radius:3px;
+  border-radius: 3px;
   background-color: white;
   cursor: pointer;
 }
@@ -183,13 +172,13 @@ LIST CSS RULES
   height: 30px;
 }
 
-.bookmark-controls > button  {
+.bookmark-controls > button {
   width: 40%;
   height: 30px;
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: auto;
   border: 2px solid gray;
-  border-radius:3px;
+  border-radius: 3px;
   background-color: white;
   cursor: pointer;
 }
@@ -201,14 +190,13 @@ LIST CSS RULES
   margin-right: auto;
 }
 
-
-@media screen and (min-width: 450px) and (max-width: 800px) { 
+@media screen and (min-width: 450px) and (max-width: 800px) {
   body {
-    width:80%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
   }
- 
+
   #add-form {
     width: 80%;
     margin-top: 10px;
@@ -222,19 +210,17 @@ LIST CSS RULES
   div > textarea {
     height: 50px;
   }
-
 }
 
 @media screen and (min-width: 800px) {
-
- body {
+  body {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
   }
 
   select {
-  align-self: flex-start;
+    align-self: flex-start;
   }
 
   .main-controls {
@@ -245,8 +231,8 @@ LIST CSS RULES
     width: 25%;
     margin-left: auto;
     align-self: flex-end;
-  } 
-/* 
+  }
+  /* 
 =======================================
 FORM DISPLAY
 ======================================= */
@@ -254,55 +240,52 @@ FORM DISPLAY
   #add-form {
     width: 80%;
   }
-  
+
   #add-form > button {
     width: 30%;
     height: 40px;
     flex-direction: row;
     align-self: flex-start;
   }
-  
-  div >input {
+
+  div > input {
     height: 40px;
   }
-  
+
   div > textarea {
     height: 60px;
   }
-  
+
   /* ===============================
   LIST CSS RULES
   =============================== */
-  
+
   .star-rating {
     font-size: 1.2em;
   }
-  
+
   .title-element {
     font-size: 1.5em;
-  } 
-  
-  .bookmark-info  {
+  }
+
+  .bookmark-info {
     width: 80%;
     margin: 10px auto;
     word-wrap: break-word;
   }
-  
+
   .visit > a {
     margin-top: 15px;
     font-size: 1.2em;
     height: 40px;
   }
-  
+
   .bookmark-controls {
     margin: 30px auto 30px auto;
   }
-  
-  .bookmark-controls > button  {
+
+  .bookmark-controls > button {
     width: 30%;
     height: 40px;
   }
-
 }
-  
-

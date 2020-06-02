@@ -1,7 +1,7 @@
-const api = (function() {
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/daniel';
+const BASE_URL = 'https://thinkful-list-api.herokuapp.com/daniel';
 
-  function getBookmarks() {
+const api = {
+  getBookmarks() {
     return fetch(`${BASE_URL}/bookmarks`, {
       headers: {
         'content-type': 'application/json',
@@ -9,9 +9,9 @@ const api = (function() {
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
-  }
+  },
 
-  function createBookmark(newItem) {
+  createBookmark(newItem) {
     return fetch(`${BASE_URL}/bookmarks`, {
       method: 'POST',
       headers: {
@@ -21,9 +21,9 @@ const api = (function() {
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
-  }
+  },
 
-  function editBookmark(id, updated) {
+  editBookmark(id, updated) {
     return fetch(`${BASE_URL}/bookmarks/${id}`, {
       method: 'PATCH',
       headers: {
@@ -33,21 +33,16 @@ const api = (function() {
     }).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
-  }
+  },
 
-  function deleteBookmark(id) {
+  deleteBookmark(id) {
     return fetch(`${BASE_URL}/bookmarks/${id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
       },
     }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
-  }
+  },
+};
 
-  return {
-    getBookmarks,
-    deleteBookmark,
-    editBookmark,
-    createBookmark,
-  };
-})();
+export default api;
