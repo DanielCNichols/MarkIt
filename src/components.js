@@ -1,5 +1,5 @@
-const components = (function() {
-  function addForm() {
+const components = {
+  addForm() {
     return `<form id="add-form">
     <fieldset>
     <div><label for="title"><span>Title</span></label></div>
@@ -24,9 +24,9 @@ const components = (function() {
     <button class="button" type="submit">Submit</button>
     <button class="button" type="button" id="cancel">Cancel</button>
   </form>`;
-  }
+  },
 
-  function bookmarkExpanded(bookmark, starRating) {
+  bookmarkExpanded(bookmark, starRating) {
     return `<li class="bookmark-element" data-item-id="${bookmark.id}">
         <div class="star-rating">Your rating: ${starRating}</div>
         <div class="title-element"><p><a target="_blank" href="${
@@ -43,21 +43,42 @@ const components = (function() {
             <button class="item-controls delete">Delete</button>
         </div>
       </li>`;
-  }
+  },
 
-  function bookmarkCollapsed(bookmark, starRating) {
-    return `<li class="bookmark-element" data-item-id="${bookmark.id}"> 
-      <div class="star-rating">Your rating: ${starRating}</div>
-      <div class="title-element"><p><a target="_blank" href="${bookmark.url}">${bookmark.title}</p></a></div>
-      <div  class="bookmark-controls">
-          <button class="expand">More</button>
-      </div>
-    </li>`;
-  }
+  bookmarkCollapsed(bookmark, starRating) {
+    const { title, url } = bookmark;
+    return `<li class="bookmark-item bookmark-element" data-item-id="${bookmark.id}">
+        <div className="head">
+          <h3>${title}</h3>
+        </div>
+        <div className="rating">
+          <span>${starRating}</span>
+        </div>
+        <div className="item-controls-container">
+          <div className="item-controls">
+            <div className="tooltip">
+              <span className="tooltiptext">Edit</span>
+            </div>
+            <div className="tooltip delete">
+              <span className="tooltiptext">Delete</span>
+            </div>
+            <div className="tooltip">
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href=${url}
+                className="linkbutton"
+              >Here
+              </a>
+              <span className="tooltiptext">Visit</span>
+            </div>
+          </div>
+        </div>
+        <div class="expand item-expand">
+          <span>More</span>
+        </div>
+      </li>`;
+  },
+};
 
-  return {
-    bookmarkExpanded,
-    bookmarkCollapsed,
-    addForm,
-  };
-})();
+export default components;
