@@ -1,0 +1,16 @@
+
+Functionality
+☐ Sort 
+☐ Edit
+☐ handle undefined rating (if undefined, then say 'not rated')... or don't allow submission without rating
+
+
+
+Styling-use the react project for help, but be smarter
+☐ color scheme
+☐ Typography
+☐ material design Icons
+
+Structure
+☐ Set up with webpack and npm
+☐ make use of modules 

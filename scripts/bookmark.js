@@ -1,24 +1,16 @@
-'use strict'; 
+'use strict';
 
 const bookmark = (function() {
-
   const create = function(newItem) {
     return {
-      // id: cuid(),
       title: newItem.title,
       url: newItem.url,
-      desc: newItem.desc,
-      rating: newItem.rating,
-      // expanded: false
+      desc: newItem.desc || null,
+      rating: newItem.rating || null,
     };
   };
 
-
-
-
-
   return {
-    create
+    create,
   };
-
 })();
