@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Bookmarks App</title>
+  </head>
+  <body>
+    <header>
+      <h1>MarkIT</h1>
+      <p>Bookmarking made simple</p>
+    </header>
+
+    <section class="main-controls">
+      <label for="main-filter"
+        >Filter by minimum rating:
+        <select name="filter" id="main-filter">
+          <option value="">View all</option>
+          <option value="1">1+ Stars</option>
+          <option value="2">2+ Stars </option>
+          <option value="3">3+ Stars</option>
+          <option value="4">4+ Stars</option>
+          <option value="5">5+ Stars</option>
+        </select>
+      </label>
+      <button id="main-add">New Bookmark</button>
+    </section>
+
+    <section aria-live="assertive" class="error"></section>
+    <section aria-live="polite" class="add-item"></section>
+    <section aria-live="polite" class="list-display"></section>
+  <script src="index_bundle.js"></script></body>
+</html>
