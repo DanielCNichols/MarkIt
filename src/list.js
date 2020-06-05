@@ -4,31 +4,32 @@ import store from './store';
 import components from './components';
 import bookmark from './bookmark';
 import api from './api';
+import form from './components/addForm/add-form';
+import mark from './components/bookmark/bookmark';
 const list = {
   generateItemString(bookmarklist) {
-    let entries = bookmarklist.map(item => list.generateItemHTML(item));
+    let entries = bookmarklist.map((item) => list.generateItemHTML(item));
     return entries.join('');
   },
 
   getId(bookmark) {
-    return $(bookmark)
-      .closest('.bookmark-element')
-      .data('item-id');
+    return $(bookmark).closest('.bookmark-item').data('item-id');
   },
 
   generateForm() {
-    return components.addForm();
+    // return components.addForm();
+    return form.formTemp();
   },
 
   handleCancelAdd() {
-    $('body').on('click', '#cancel', function() {
+    $('body').on('click', '#cancel', function () {
       store.resetAdd();
       list.render();
     });
   },
 
   addForm() {
-    $('#main-add').click(function() {
+    $('#main-add').click(function () {
       store.addState();
       let form = list.generateForm();
       $('.add-item').html(form);
@@ -54,11 +55,20 @@ const list = {
     }
   },
 
+  renderSubmitError() {
+    if (store.error) {
+      const el = `<p>${store.error}</p>`;
+      $('#add-error').html(el);
+    } else {
+      $('#add-error').empty();
+    }
+  },
+
   renderStars(rating) {
     let i = 0;
     let stars = '';
     while (i < rating) {
-      stars += `<span class="fa fa-star"></span>`;
+      stars += `<span>*</span>`;
       i++;
     }
     return stars;
@@ -69,9 +79,9 @@ const list = {
       bookmark.rating >= 1 ? list.renderStars(bookmark.rating) : 'Not Rated';
 
     if (bookmark.expanded === true) {
-      return components.bookmarkExpanded(bookmark, starRating);
+      return mark.bookmarkExpanded(bookmark, starRating);
     } else {
-      return components.bookmarkCollapsed(bookmark, starRating);
+      return mark.bookmarkCollapsed(bookmark, starRating);
     }
   },
 
@@ -87,7 +97,7 @@ const list = {
 
     if (store.filterVal !== undefined) {
       bookmarksStore = bookmarksStore.filter(
-        bookmark => bookmark.rating >= store.filterVal
+        (bookmark) => bookmark.rating >= store.filterVal
       );
     }
     const bookmarksString = list.generateItemString(bookmarksStore);
@@ -102,7 +112,7 @@ const list = {
   },
 
   handleBookmarkSubmit() {
-    $('body').on('submit', '#add-form', async function(event) {
+    $('body').on('submit', '#add-form', async function (event) {
       event.preventDefault();
       store.resetAdd();
       let form = document.querySelector('#add-form');
@@ -114,13 +124,13 @@ const list = {
         list.render();
       } catch (error) {
         store.setError(error.message);
-        list.renderError();
+        list.renderSubmitError();
       }
     });
   },
 
   handleBookmarkDelete() {
-    $('.list-display').on('click', '.delete', async function(event) {
+    $('.list-display').on('click', '.delete', async function (event) {
       const id = list.getId(event.currentTarget);
       try {
         await api.deleteBookmark(id).then(() => store.deleteBookmark(id));
@@ -133,7 +143,7 @@ const list = {
   },
 
   handleFilter() {
-    $('#main-filter').on('mouseup', function() {
+    $('#main-filter').on('mouseup', function () {
       let filterVal = $('#main-filter').val();
       store.filterAdd(filterVal);
       list.render();
@@ -145,7 +155,7 @@ const list = {
   },
 
   handleBookmarkExpand() {
-    $('.list-display').on('click', '.expand', function(event) {
+    $('.list-display').on('click', '.expand', function (event) {
       const id = list.getId(event.currentTarget);
       console.log(event.currentTarget);
       console.log(id);
